@@ -1,0 +1,24 @@
+version: '3'
+services:
+  production_app:
+    build:
+      args:
+        user: staff
+      context: ./
+      dockerfile: Dockerfile
+    # image: webcoupers/wbcphp:alpine
+    ports:
+      - 4400:80
+    container_name: production_app
+    restart: unless-stopped
+    environment:
+      - APP_ENV=production
+      - APP_WORKSPACE=laravel-with-docker-starter
+      - GIT_OAUTH2_TOKEN=YOUR_OAUTH_TOKEN_HERE
+      - REPOSITORY_URL=YOUR_REPOSITORY_URL
+      - GIT_BRANCH=production
+    volumes:
+      - production_app:/var/www:cached
+
+volumes:
+  production_app:
