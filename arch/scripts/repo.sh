@@ -50,7 +50,7 @@ shift
 done
 
 if [ -z "$APP_WORKSPACE" ]; then
-  echo ">>Need to set APP_NAME env variable";exit 1
+  echo ">>Need to set APP_WORKSPACE env variable";exit 1
 fi
 
 if [ -z "$FULL_GIT_URL" ]; then
