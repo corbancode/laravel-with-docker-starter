@@ -1,0 +1,15 @@
+version: '3'
+services:
+  test_app:
+    build:
+      args:
+        user: staff
+      context: ./
+      dockerfile: Dockerfile
+    container_name: testing_app
+    tty: true
+    env_file: .env.testing
+    environment:
+      - APP_WORKSPACE=laravel-with-docker-starter
+    volumes:
+      - ./:/var/www:cached
