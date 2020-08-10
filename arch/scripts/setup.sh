@@ -12,6 +12,11 @@ else
     echo ">>Giving permission..."
     chown -R www-data:root .
 fi
+
+if [[ -z "${APP_KEY}" ]]; then
+    echo ">>Generating application secret key..."
+    php artisan key:generate
+fi
 echo ">>Running migration..."
 php artisan migrate
 echo ">>Seeding..."
