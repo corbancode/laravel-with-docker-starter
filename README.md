@@ -1,79 +1,91 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Laravel With Docker Starter
+1. [Introduction](#introduction)
+2. [Technologies](#technologies)
+3. [Setup](#setup)
+4. [Installation & Configuration](#installation-and-configuration)
+5. [Testing](#testing)
+6. [Security Vulnerabilities](#security-vulnerabilities)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### Introduction
 
-## About Laravel
+The aim of this project is to make it easy to startup a Laravel project with Docker already configured and ready for use both on local and production environments.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Technologies
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [PHP](https://www.php.net//)
+- [Laravel](https://laravel.com/)
+- [Mysql](https://www.mysql.com/)
+- [Docker](https://www.docker.com/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+### Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Pre-requisites:**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Make sure Docker is installed.
 
-## Laravel Sponsors
+**Configure your database:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Find file **.env** or create one in your root directory and set the environment variables listed below:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+* **APP_URL**
+* **DB_CONNECTION**
+* **DB_HOST**
+* **DB_PORT**
+* **DB_DATABASE**
+* **DB_USERNAME**
+* **DB_PASSWORD**
 
-## Contributing
+**Note:**
+If your database is on the same machine, use **docker.host.internal** as the **DB_HOST**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Change Workspace:**
 
-## Code of Conduct
+Find file **docker-compose.yml**, **docker-compose-production.yml** and **docker-compose-testing.yml** in your root directory and replace **laravel-with-docker-starter** with your project folder name:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Installation
+**To start your application**:
 
-## Security Vulnerabilities
+##### On server:
+
+The production docker-compose file pulls the latest changes directly from your repository. Find file **docker-compose-production.yml** and set the environment variables listed below:
+
+* **GIT_OAUTH2_TOKEN**
+* **REPOSITORY_URL**
+* **GIT_BRANCH**
+
+Then run the command below:
+
+```
+docker-compose -f docker-compose-production.yml up
+```
+
+##### On local:
+
+```
+docker-compose up
+```
+
+### Testing
+
+Find file **.env.testing** in your root directory and set the environment variables listed below:
+
+* **DB_CONNECTION**
+* **DB_HOST**
+* **DB_PORT**
+* **DB_DATABASE**
+* **DB_USERNAME**
+* **DB_PASSWORD**
+
+**Note:**
+If your database is on the same machine, use **docker.host.internal** as the **DB_HOST**
+
+```
+composer test
+```
+
+This project uses Codeception for testing.  For more information on how to use codeception for testing, visit [Codeception](https://codeception.com/) official website.
+
+### Security Vulnerabilities
 
 If you discover a security vulnerability within this project, please send an e-mail to me [oayomideelijah@gmail.com](mailto:oayomideelijah@gmail.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

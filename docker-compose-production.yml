@@ -16,7 +16,7 @@ services:
       - APP_WORKSPACE=laravel-with-docker-starter
       - GIT_OAUTH2_TOKEN=YOUR_OAUTH_TOKEN_HERE
       - REPOSITORY_URL=YOUR_REPOSITORY_URL
-      - GIT_BRANCH=production
+      - GIT_BRANCH=master
     volumes:
       - production_app:/var/www:cached
 
