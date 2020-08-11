@@ -20,6 +20,10 @@ The aim of this project is to make it easy to startup a Laravel project with Doc
 
 ### Setup
 
+**Pre-requisites:**
+
+Make sure Docker is installed.
+
 **Configure your database:**
 
 Find file **.env** or create one in your root directory and set the environment variables listed below:
